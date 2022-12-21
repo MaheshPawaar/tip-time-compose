@@ -1,5 +1,8 @@
 package com.example.tiptime
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Surface
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performTextInput
@@ -15,11 +18,13 @@ class TipUITests {
     fun calculate_20_percent_tip() {
         composeTestRule.setContent {
             TipTimeTheme {
-                TipTimeScreen()
+                Surface (modifier = Modifier.fillMaxSize()){
+                    TipTimeScreen()
+                }
             }
         }
-        composeTestRule.onNodeWithText("Cost of Service").performTextInput("10")
+        composeTestRule.onNodeWithText("Bill Amount").performTextInput("10")
         composeTestRule.onNodeWithText("Tip (%)").performTextInput("20")
-        composeTestRule.onNodeWithText("Tip amount: ₹ 2.00").assertExists()
+        composeTestRule.onNodeWithText("Tip amount: ₹ 2.00").assertExists("No node with this text was found.")
     }
 }
